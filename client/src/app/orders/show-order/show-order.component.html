@@ -1,0 +1,15 @@
+<main class="catalog" *ngIf="!loading; else loadingBlock">
+  <app-order-item
+    class="catalog__order"
+    *ngFor="let order of orders"
+    [order]="order"
+  >
+    {{ order.annonce.title }}
+  </app-order-item>
+</main>
+
+<ng-template #loadingBlock>
+  <main class="catalog catalog--loading">
+    <span class="catalog__loading"> Loading orders... </span>
+  </main> </ng-template
+>>

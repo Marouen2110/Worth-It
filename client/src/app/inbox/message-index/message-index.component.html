@@ -1,0 +1,22 @@
+<div class="ui celled list">
+  <!-- <div
+    class="item"
+    *ngFor="let annonce of annonces; let i = index"
+    [attr.data-index]="i"
+  >  -->
+  <div class="item" *ngFor="let discussion of discussions">
+    <a [routerLink]="discussion.discussionId" routerLinkActive="active">
+      <div class="content">
+        <div class="header trim">
+          {{ discussion.annonceTitle }}
+        </div>
+        <p class="trim">
+          {{ discussion.discussionId }}
+        </p>
+        <p class="trim">
+          {{ discussion.sellerId }}
+        </p>
+      </div>
+    </a>
+  </div>
+</div>

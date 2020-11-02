@@ -1,0 +1,52 @@
+<div class="wi">
+  <label class="label"> Is it Worth It ?</label>
+  <form (ngSubmit)="onSubmit()" class="ui form" #urlLBCForm="ngForm">
+    <div class="ui labeled input">
+      <div class="ui label">https://</div>
+      <input
+        class="ui input"
+        type="text"
+        pattern="https://.*"
+        placeholder="LeBoncoin url"
+        required
+        name="urlLBC"
+        [(ngModel)]="urlLBC"
+        #urlControl="ngModel"
+      />
+    </div>
+
+    <div>
+      <div>
+        <ng-container
+          class="ui pointing red basic label"
+          *ngIf="urlControl.invalid && urlControl.touched"
+        >
+          <div
+            class="ui pointing red basic label"
+            *ngIf="urlControl.errors.required"
+          >
+            You must enter an url
+          </div>
+          <div
+            class="ui pointing red basic label"
+            *ngIf="urlControl.errors.pattern"
+          >
+            Please enter a valid url
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="center">
+        <button [disabled]="urlLBCForm.invalid" class="ui button primary">
+          Submit
+        </button>
+      </div>
+    </div>
+
+    <div class="eleven wide column">
+      <router-outlet></router-outlet>
+    </div>
+  </form>
+</div>

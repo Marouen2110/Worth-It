@@ -1,0 +1,33 @@
+<section>
+  <figure class="annonce">
+    <img class="annonce__img" [src]="annonce.image" />
+
+    <figcaption>
+      <a [routerLink]="['/annonce/', annonce.id]" routerLinkActive="active">
+        <h3 class="annonce__title">
+          {{ annonce.title }}
+          <span class="product__price">{{ annonce.price }}€</span>
+        </h3>
+      </a>
+
+      <div class="ui labeled button" tabindex="0">
+        <div class="ui red button"><i class="heart icon"></i> Like</div>
+        <a class="ui basic red left pointing label">
+          {{ annonce.voteCount }}
+        </a>
+      </div>
+      <!-- <button
+        class="button button--buy snipcart-add-item"
+        [attr.data-item-title]="annonce.title"
+        [attr.data-item-id]="annonce.id"
+        [attr.data-item-price]="annonce.price"
+        [attr.data-item-shippingFee]="annonce.shippingFee"
+        [attr.data-item-description]="annonce.description"
+        [attr.data-item-image]="annonce.image"
+        [attr.data-item-voteCount]="annonce.voteCount"
+      >
+        Add to cart
+      </button> -->
+    </figcaption>
+  </figure>
+</section>

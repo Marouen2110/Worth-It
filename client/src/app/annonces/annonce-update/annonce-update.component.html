@@ -1,0 +1,9 @@
+<button (click)="showModal = true" class="ui button inverted primary fluid">
+  Edit
+</button>
+
+<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+  <div modalTitle>Edit Advert</div>
+  <app-annonce-form (annonceSubmit)="onSubmit($event)" [annonce]="annonce">
+  </app-annonce-form>
+</app-modal>

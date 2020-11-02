@@ -1,0 +1,83 @@
+<div class="ui container">
+  <div class="ui secondary pointing menu">
+    <a routerLink="/" class="item">
+      <img
+        class="nav__logo"
+        src="assets/png/logo.png"
+        alt="Worth-It"
+        width="200px"
+    /></a>
+
+    <div class="right menu">
+      <ng-container *ngIf="signedin$ | async">
+        <a
+          class="ui item"
+          routerLink="/notifications"
+          routerLinkActive="active"
+        >
+          <i class="bell icon"></i>
+        </a>
+        <a class="ui item" routerLink="/myadverts" routerLinkActive="active">
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">My List</div>
+            <div class="visible content">
+              <i class="box icon"></i>
+            </div>
+          </div>
+        </a>
+        <a class="ui item" routerLink="/inbox" routerLinkActive="active">
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">Inbox</div>
+            <div class="visible content">
+              <i class="inbox icon"></i>
+            </div>
+          </div>
+        </a>
+        <a class="ui item" routerLink="/orders" routerLinkActive="active">
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">Shop</div>
+            <div class="visible content">
+              <i class="shop icon"></i>
+            </div>
+          </div>
+        </a>
+        <a class="ui item" routerLink="/signout" routerLinkActive="active">
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">Sign Out</div>
+            <div class="visible content">
+              <i class="sign-out icon"></i>
+            </div>
+          </div>
+        </a>
+      </ng-container>
+      <ng-container *ngIf="!(signedin$ | async)">
+        <a
+          class="ui item"
+          routerLink="/signin"
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+        >
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">Sign In</div>
+            <div class="visible content">
+              <i class="sign-in icon"></i>
+            </div>
+          </div>
+        </a>
+        <a class="ui item" routerLink="/signup" routerLinkActive="active">
+          <div class="ui vertical animated button" tabindex="0">
+            <div class="hidden content">Sign Up</div>
+            <div class="visible content">
+              <i class="address card outline icon"></i>
+            </div>
+          </div>
+        </a>
+      </ng-container>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>
+<!-- <app-annonces-list></app-annonces-list> -->
+<!-- <app-paginator></app-paginator> -->
+<app-notification-list></app-notification-list>

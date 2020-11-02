@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: favoris-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: favoris
+  template:
+    metadata:
+      labels:
+        app: favoris
+    spec:
+      containers:
+        - name: favoris
+          # image: us.gcr.io/worth-it-dev/favoris
+          image: marouenslaimia/wi-favoris
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: MONGO_URI
+              value: "mongodb://favoris-mongo-srv:27017/favoris"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: favoris-srv
+spec:
+  selector:
+    app: favoris
+  ports:
+    - name: favoris
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

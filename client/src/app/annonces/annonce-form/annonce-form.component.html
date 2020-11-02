@@ -1,0 +1,65 @@
+<form (ngSubmit)="onSubmit()" class="ui form" [formGroup]="annonceForm">
+  <app-input
+    [control]="annonceForm.get('title')"
+    inputType="text"
+    label="Title"
+  >
+  </app-input>
+
+  <app-input
+    [control]="annonceForm.get('phone')"
+    inputType="text"
+    label="Phone"
+  >
+  </app-input>
+
+  <app-input
+    [control]="annonceForm.get('price')"
+    inputType="number"
+    label="Price"
+  >
+  </app-input>
+
+  <app-input
+    [control]="annonceForm.get('shippingFee')"
+    inputType="number"
+    label="Shipping Fee"
+  >
+  </app-input>
+
+  <app-input
+    [control]="annonceForm.get('adress')"
+    inputType="text"
+    label="Adress"
+  >
+  </app-input>
+
+  <app-input
+    controlType="textarea"
+    [control]="annonceForm.get('description')"
+    label="Description"
+  >
+  </app-input>
+
+  <input
+    #imageInput
+    type="file"
+    accept="image/*"
+    inputType="image"
+    id="picture"
+    (change)="imageUpload(imageInput)"
+    [(ngModel)]="url"
+    [ngModelOptions]="{ standalone: true }"
+  />
+  <!-- {{ url }} -->
+  {{ annonce.image }}
+  <!-- <app-input-image
+    (urlOnchanges)="imageUrlS3($event)"
+    controlType="image"
+    [control]="annonceForm.get('image')"
+    label="Image"
+  >
+  </app-input-image> -->
+
+  <button class="ui button primary">Send</button>
+</form>

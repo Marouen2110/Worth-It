@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting-mongo
+  template:
+    metadata:
+      labels:
+        app: voting-mongo
+    spec:
+      containers:
+        - name: voting-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-mongo-srv
+spec:
+  selector:
+    app: voting-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

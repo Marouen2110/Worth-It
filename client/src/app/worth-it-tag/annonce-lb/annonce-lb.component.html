@@ -1,0 +1,79 @@
+<body>
+  <main class="container">
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <img data-image="red" class="active" [src]="annonceLBC.data.image" />
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- Product Description -->
+      <div class="product-description">
+        <span> Advert N°: {{ annonceLBC.id }}</span>
+        <h1>{{ annonceLBC.data.title }}</h1>
+        <p>
+          {{ annonceLBC.data.description }}
+        </p>
+      </div>
+
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Price</span>
+
+          <div class="color-choose">
+            {{ annonceLBC.data.price | currency: "EUR" }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>Sipping Fees:</span>
+
+        <div class="cable-choose">
+          {{ annonceLBC.data.shippingFees | currency: "EUR" }}
+        </div>
+
+        <a href="{{ annonceLBC.data.siteURL }}">Original Page</a>
+      </div>
+    </div>
+
+    <!-- Product Pricing -->
+  </main>
+</body>
+
+<div class="product-price">
+  <span
+    >To help us better understand which tool you are looking for, please tape
+    the name bellow (Driller, Hammer,.. )</span
+  >
+
+  <div class="ui left corner labeled input">
+    <input
+      type="text"
+      id="searchTerm"
+      name="searchTerm"
+      [(ngModel)]="searchTerm"
+      placeholder="Search..."
+    />
+    <div class="ui left corner label">
+      <i class="asterisk icon"></i>
+    </div>
+  </div>
+
+  <div class="ui buttons">
+    <a routerLink="/">
+      <button class="ui button">Cancel</button>
+    </a>
+    <div class="or"></div>
+    <!-- <a
+        [routerLink]="['/offers/', searchTerm]"
+        routerLinkActive="active"
+      > -->
+    <form (ngSubmit)="onSubmit()">
+      <button class="ui positive button">Next</button>
+    </form>
+  </div>
+</div>

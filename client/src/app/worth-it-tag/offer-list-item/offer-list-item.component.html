@@ -1,0 +1,26 @@
+<section>
+  <figure class="annonce">
+    <img
+      class="annonce__img"
+      [src]="offer.image ? offer.image : 'assets/img/tool.jpg'"
+    />
+
+    <figcaption>
+      <h3 class="annonce__title">
+        {{ offer.name }}
+        <span class="product__price">{{ offer.min_price }}€</span>
+      </h3>
+      <div class="ui labeled button" tabindex="0">
+        <div class="ui red button"><i class="heart icon"></i> Like</div>
+        <a class="ui basic red left pointing label">
+          {{ offer.review_rating }}
+        </a>
+      </div>
+      <br />
+      <!-- <a routerLink="/redirect" [queryParams]="{ url: offer.url }">
+        <button class="button button--buy snipcart-add-item">View Offer</button>
+      </a> -->
+      <a href="{{ offer.url }}" target="_blank">View Offer</a>
+    </figcaption>
+  </figure>
+</section>

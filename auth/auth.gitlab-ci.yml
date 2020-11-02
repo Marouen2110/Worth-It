@@ -1,0 +1,13 @@
+auth-build:
+  variables: 
+    IMAGE_TAG: ${CI_COMMIT_REF_SLUG}
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/auth
+    DIR: auth
+  extends: 
+    - .build
+
+auth-test:
+  variables: 
+    DIR: auth
+  extends: 
+    - .test 

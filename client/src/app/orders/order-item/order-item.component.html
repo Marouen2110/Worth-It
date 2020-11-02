@@ -1,0 +1,71 @@
+<div class="ui celled list">
+  <div class="item" *ngIf="order.status !== 'cancelled'">
+    <!-- <div class="content">
+        <div class="header trim">
+          {{ annonce.title }}
+        </div>
+        <p class="trim">
+          {{ annonce.price }}
+        </p>
+      </div> -->
+    <table class="ui very basic collapsing celled table">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Shipping Fees</th>
+          <th>Order Status</th>
+          <th>Time Left</th>
+          <th>Pay</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <!-- <td>
+              <img class="ui mini rounded image" [src]="annonce.image" />
+            </td> -->
+          <a
+            [routerLink]="['/annonce/', order.annonce.id]"
+            routerLinkActive="active"
+          >
+            <td>{{ order.annonce.title }}</td>
+          </a>
+          <td>{{ order.annonce.price }}</td>
+          <td>{{ order.annonce.shippingFee }}</td>
+          <td>{{ order.status }}</td>
+          <td></td>
+          <td>
+            <button
+              (click)="showModal = true"
+              class="ui right floated small primary labeled icon button"
+            >
+              <i class="pay icon"></i> Pay
+            </button>
+            <app-modal (dismiss)="showModal = false" *ngIf="showModal">
+              <app-card-form (paymentSubmit)="onSubmit($event)"></app-card-form>
+            </app-modal>
+            <!-- <a [routerLink]="['/api/annonce/delete', annonce.id]">
+                <button class="button is-link">Edit</button>
+              </a> -->
+          </td>
+          <td>
+            <a [routerLink]="">
+              <button
+                class="ui negative right floated small primary labeled icon button"
+              >
+                <i class="delete icon"></i> Delete
+              </button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <p>it works!</p> -->
+  </div>
+</div>
+
+<ng-template #timeoutBlock>
+  <div>Order Expired</div>
+</ng-template>

@@ -1,0 +1,19 @@
+<div class="field">
+  <label>{{ label }}</label>
+
+  <input
+    *ngIf="controlType === 'image'"
+    #imageInput
+    type="file"
+    accept="image/*"
+    inputType="image"
+    id="picture"
+    (change)="imageUpload(imageInput)"
+    [formControl]="control"
+  />
+  <!-- </app-input> -->
+
+  <label class="custom-file-label" style="cursor: pointer" for="picture">{{
+    uploadImageLabel
+  }}</label>
+</div>

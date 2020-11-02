@@ -1,0 +1,70 @@
+<body>
+  <main class="container">
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <img data-image="red" class="active" [src]="annonce.image" />
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- Product Description -->
+      <div class="product-description">
+        <span> Advert N°: {{ annonce.id }}</span>
+        <h1>{{ annonce.title }}</h1>
+        <p>
+          {{ annonce.description }}
+        </p>
+      </div>
+
+      <!-- Product Configuration -->
+      <div class="product-configuration">
+        <!-- Product Color -->
+        <div class="product-color">
+          <span>Price</span>
+
+          <div class="color-choose">
+            {{ annonce.price | currency: "EUR" }}
+          </div>
+        </div>
+      </div>
+      <div class="ui labeled button" tabindex="0">
+        <div class="ui red button"><i class="heart icon"></i> Like</div>
+        <a class="ui basic red left pointing label">
+          {{ annonce.voteCount }}
+        </a>
+      </div>
+
+      <!-- <p *ngIf="annonce"  class="date"><strong>Posted on: </strong>{{ annonce.createdAt| date: "short" }}</p> -->
+      <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>Sipping Fees:</span>
+
+        <div class="cable-choose">
+          {{ annonce.shippingFee | currency: "EUR" }}
+        </div>
+
+        <div class="vote">
+          <i class="thumbs up outline icon"></i>
+          <i class="thumbs down icon"></i>
+        </div>
+
+        <a href="tel: {{ annonce.phone }}">Contact Seller</a>
+        <br />
+        <a href="adress: {{ annonce.adress }}">adress</a>
+      </div>
+    </div>
+
+    <!-- Product Pricing -->
+  </main>
+</body>
+
+<div class="product-price">
+  <span>To Buy this tool</span>
+  <form (ngSubmit)="onSubmit(annonce.id)">
+    <!-- <div class="ui animated fade button" tabindex="0">
+      <div class="visible content">Purchase for</div>
+      <div class="hidden content">{{ annonce.price }} €</div>
+    </div> -->
+    <button class="ui positive button">Purchase</button>
+  </form>
+</div>

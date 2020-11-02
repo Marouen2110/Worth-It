@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: favoris-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: favoris-mongo
+  template:
+    metadata:
+      labels:
+        app: favoris-mongo
+    spec:
+      containers:
+        - name: favoris-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: favoris-mongo-srv
+spec:
+  selector:
+    app: favoris-mongo
+  ports:
+    - name: db
+      protocol: TCP
+      port: 27017
+      targetPort: 27017

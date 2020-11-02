@@ -1,0 +1,31 @@
+<div class="header">
+  <div>
+    <h3>{{ messagesDiscussion[0].annonce.title }}</h3>
+    <div *ngIf="buyer">
+      Buyer: <i>{{ buyer.email }}</i>
+    </div>
+    <div *ngIf="seller">
+      Seller: <i>{{ seller.email }}</i>
+    </div>
+  </div>
+  <div class="ui divider"></div>
+  <div class="chat">
+    <div
+      class="msg"
+      *ngFor="let msg of messagesDiscussion; trackBy: trackedByCreated"
+    >
+      <div class="user">
+        <div>{{ msg.userId }}</div>
+        <!-- <div>{{ ngOnInit(getUserById(msg.userId)) }}</div> -->
+        <div>{{ msg.createdAt | date: "short" }}</div>
+
+        <p>{{ msg.messageText }}</p>
+      </div>
+      <div class="ui divider"></div>
+    </div>
+    <app-message-create
+      [messagesDiscussion]="messagesDiscussion"
+    ></app-message-create>
+  </div>
+</div>
+<div class="ui divider"></div>

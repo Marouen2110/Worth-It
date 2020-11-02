@@ -1,0 +1,95 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # ingress.kubernetes.io/secure-backends: 'true'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/cors-allow-headers: 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization,HttpOnly'
+    nginx.ingress.kubernetes.io/cors-allow-origin: 'https://worth-it-front-staging.herokuapp.com/'
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
+    # nginx.ingress.kubernetes.io/configuration-snippet: |
+    #   more_set_headers "Set-Cookie: HttpOnly";
+spec:
+  rules:
+    - host: www.worth-it-api.xyz
+      http:
+        paths:
+          - path: /api/payments/?(.*)
+            backend:
+              serviceName: payments-srv
+              servicePort: 3000
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-srv
+              servicePort: 3000
+          - path: /api/annonces/?(.*)
+            backend:
+              serviceName: annonces-srv
+              servicePort: 3000
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-srv
+              servicePort: 3000
+          - path: /api/comments/?(.*)
+            backend:
+              serviceName: comments-srv
+              servicePort: 3000
+          - path: /api/favorite/?(.*)
+            backend:
+              serviceName: favoris-srv
+              servicePort: 3000
+          - path: /api/discussion/?(.*)
+            backend:
+              serviceName: messages-srv
+              servicePort: 3000
+          - path: /api/vote/?(.*)
+            backend:
+              serviceName: voting-srv
+              servicePort: 3000
+          - path: /api/search/?(.*)
+            backend:
+              serviceName: search-srv
+              servicePort: 3000
+          - path: /api/wi/?(.*)
+            backend:
+              serviceName: worthit-srv
+              servicePort: 3000
+          - path: /?(.*)
+            backend:
+              serviceName: client-srv
+              servicePort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: 'true'
+    service.beta.kubernetes.io/do-loadbalancer-hostname: 'www.worth-it-api.xyz'
+  labels:
+    helm.sh/chart: ingress-nginx-2.0.3
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/version: 0.32.0
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: controller
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: http
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: https
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/component: controller

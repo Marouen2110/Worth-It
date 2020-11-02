@@ -1,0 +1,51 @@
+:host {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.basic.label {
+  margin-bottom: 0.5em;
+}
+
+button {
+  margin-bottom: 0.5em;
+}
+
+.ui.input {
+  font-size: 2em;
+}
+
+
+label {
+  display: block;
+  text-align: center;
+  line-height: 150%;
+  font-size: 3em;
+  font: small-caps bold 50px/1 sans-serif;
+}
+
+.container {
+  height: 200px;
+  position: relative;
+  /* border: 3px solid green; */
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.ui.input {
+  font-size: 2em;
+  width: 36em;
+}
+
+.wi {
+  display: block;
+    margin-bottom: 1em;
+    margin-top: 5%;
+}

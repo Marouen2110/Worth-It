@@ -1,0 +1,13 @@
+<button (click)="showModal = true" class="ui button inverted primary fluid">
+  Compose
+</button>
+
+<app-modal (dismiss)="showModal = false" *ngIf="showModal">
+  <div modalTitle>Compose</div>
+  <app-message-form
+    (messageSubmit)="onSubmit($event)"
+    [message]="message"
+    [messagesDiscussion]="messagesDiscussion"
+  >
+  </app-message-form>
+</app-modal>

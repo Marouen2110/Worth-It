@@ -1,0 +1,63 @@
+<div class="ui celled list">
+  <div class="item" *ngFor="let annonce of annonces">
+    <!-- <div class="content">
+        <div class="header trim">
+          {{ annonce.title }}
+        </div>
+        <p class="trim">
+          {{ annonce.price }}
+        </p>
+      </div> -->
+    <table class="ui very basic collapsing celled table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <a
+              [routerLink]="['/annonce/', annonce.id]"
+              routerLinkActive="active"
+            >
+              <img class="ui mini rounded image" [src]="annonce.image" />
+            </a>
+          </td>
+          <td>{{ annonce.title }}</td>
+          <td>{{ annonce.price }}</td>
+          <td>
+            <div>
+              <app-annonce-update [annonce]="annonce"></app-annonce-update>
+            </div>
+            <!-- <a [routerLink]="['/api/annonce/delete', annonce.id]">
+                <button
+                  class="ui right floated small primary labeled icon button"
+                >
+                  <i class="edit icon"></i> Edit
+                </button>
+              </a> -->
+            <!-- <a [routerLink]="['/api/annonce/delete', annonce.id]">
+                <button class="button is-link">Edit</button>
+              </a> -->
+          </td>
+          <td>
+            <a [routerLink]="">
+              <button
+                class="ui negative right floated small primary labeled icon button"
+              >
+                <i class="delete icon"></i> Delete
+              </button>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- <p>it works!</p> -->
+  </div>
+</div>

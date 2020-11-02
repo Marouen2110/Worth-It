@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voting
+  template:
+    metadata:
+      labels:
+        app: voting
+    spec:
+      containers:
+        - name: voting
+          # image: us.gcr.io/worth-it-dev/voting
+          image: marouenslaimia/wi-voting
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: MONGO_URI
+              value: "mongodb://voting-mongo-srv:27017/voting"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-srv
+spec:
+  selector:
+    app: voting
+  ports:
+    - name: voting
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

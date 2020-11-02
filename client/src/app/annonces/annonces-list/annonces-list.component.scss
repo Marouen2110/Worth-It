@@ -1,0 +1,52 @@
+.catalog {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin: 0 5rem;
+  padding-top: 3.75rem;
+
+  &__product {
+    width: calc(100% / 3 - 5rem);
+    margin: 2.5rem;
+  }
+
+  &--loading {
+    display: flex;
+    height: 50vh;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+  }
+
+  &__loading {
+    display: flex;
+    height: 100%;
+    min-height: 100%;
+    align-items: center;
+    justify-items: center;
+  }
+}
+
+.flex {
+  display: flex; /* Make products flex in row direction (default) */
+  flex-wrap: wrap; /* Make products overflow on new row */
+  justify-content: center; /* Or space-between or space-around */
+}
+
+.flex > section {
+  flex: 1 1 0; /* Prevent the extra space around content */
+  text-align: center; /* Align text on center */
+  display: flex; /* Display as flex */
+  flex-direction: column; /* Display flex in column */
+  align-items: center; /* Align items on center */
+  max-width: 400px; /* Set max-width so the last items will behave in a more traditional way */
+}
+
+.flex > section > p {
+  flex-grow: 1; /* Keep p's same size */
+}
+
+ul {
+  display: flex; /* Display specs in flex-row */
+  justify-content: space-between; /* Specs to start and end of row */
+}

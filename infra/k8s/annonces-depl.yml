@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: annonces-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: annonces
+  template:
+    metadata:
+      labels:
+        app: annonces
+    spec:
+      containers:
+        - name: annonces
+          # image: us.gcr.io/worth-it-dev/annonces
+          image: marouenslaimia/wi-annonces
+          env:
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NATS_URL
+              value: "http://nats-srv:4222"
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: MONGO_URI
+              value: "mongodb://annonces-mongo-srv:27017/annonces"
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: annonces-srv
+spec:
+  selector:
+    app: annonces
+  ports:
+    - name: annonces
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://worth-it.dev/api/",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

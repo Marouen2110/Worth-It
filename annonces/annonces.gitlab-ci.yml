@@ -1,0 +1,13 @@
+annonce-build:
+  variables: 
+    IMAGE_TAG: ${CI_COMMIT_REF_SLUG}
+    IMAGE_NAME: $CI_REGISTRY_IMAGE/annonces
+    DIR: annonces
+  extends:  
+    - .build
+    
+annonce-test:
+  variables:
+    DIR: annonces
+  extends: 
+    - .test 

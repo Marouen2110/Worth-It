@@ -1,0 +1,47 @@
+.annonce {
+  text-align: center;
+
+  &__name {
+    @extend %txt--annonce !optional;
+    margin: 1.25rem 0;
+    text-transform: capitalize;
+  }
+
+  &__details {
+    display: flex;
+  }
+
+  &__info {
+    width: 50%;
+    text-align: center;
+    padding: 0.625rem 1.25rem;;
+  }
+
+  &__price {
+    @extend %txt--price !optional;
+    display: inline-block;
+    margin-left: 0.625rem;
+  }
+
+  &__img {
+    max-width: 180 px;
+    height: 180px;
+    border-radius: 8px;
+  
+  }
+
+  &__img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+  }
+
+  &__title{
+    font-size: 25px;
+    font-weight: 400; line-height: 32px; margin: 0 0 24px;
+    max-inline-size: fit-content;
+  }
+}
+
+.button {
+  height:40px;
+    width:100px;
+}

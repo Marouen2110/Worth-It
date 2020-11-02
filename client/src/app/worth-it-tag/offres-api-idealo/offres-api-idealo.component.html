@@ -1,0 +1,17 @@
+<main class="catalog" *ngIf="!loading; else loadingBlock">
+  <div class="flex">
+    <app-offer-list-item
+      class="catalog__annonce"
+      *ngFor="let offer of offers"
+      [offer]="offer"
+    >
+      <!-- {{ offer.name }} -->
+    </app-offer-list-item>
+  </div>
+</main>
+
+<ng-template #loadingBlock>
+  <main class="catalog catalog--loading">
+    <span class="catalog__loading"> Loading products... </span>
+  </main> </ng-template
+>>
