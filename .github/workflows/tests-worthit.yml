@@ -1,0 +1,13 @@
+name: tests-worthit
+
+on:
+  pull_request:
+    paths:
+      - 'worthit/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd worthit && npm install && npm run test:ci

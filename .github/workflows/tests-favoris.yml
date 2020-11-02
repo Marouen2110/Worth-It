@@ -1,0 +1,13 @@
+name: tests-favoris
+
+on:
+  pull_request:
+    paths:
+      - 'favoris/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd favoris && npm install && npm run test:ci
